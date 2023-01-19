@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>abc</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    
+	<script type="text/javascript">
+     $(document).ready(function(){
+
+
+$('#button').click(function(){translate();});
+
+function translate(){
+  
+  var sourceText = $('textarea#sourceText').val();
+  var sourceLang = 'ar';
+  var targetLang = 'en';
+  console.log(sourceText);
+  
+  var url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl="+ sourceLang + "&tl=" + targetLang + "&dt=t&q=" + encodeURI(sourceText);
+  //console.log(url);
+  
+  $.getJSON(url, function(data) {
+      $('textarea#resultText').val(data[0][0][0]);
+    });
+
+}
+
+
+
+
+
+
+
+
+     	});
+
+
+	</script>
+</head>
+<body>
+<textarea id="sourceText"></textarea>
+<textarea id="resultText"></textarea>
+<br>
+<input id="button" type="button" value="Translate" />
+
+<button><a  href="download.html">DOWNLOAD</a></button>
+</body>
+</html>
