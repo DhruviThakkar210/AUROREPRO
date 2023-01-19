@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ab</title>
+      
+  
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body {
+   margin: 2em;
+   text-align: center;
+   font-family: 'Open Sans';
+   background: #ececec
+}
+.upload-wrapper {
+   background: #ffffff;  
+   margin: 30px auto;
+   max-width: 650px;
+   padding: 20px;
+   border: 2px solid #eeeeee;
+}
+header {
+   padding: 10px 0 30px;
+border-bottom: 2px solid #eeeeee;
+}
+#show-text {
+   padding: 22px 0 5px;
+   overflow-y: auto;
+   max-height: 400px;
+   width: 100%;
+}
+.error {
+   display: block;
+   color: red;
+}
+h1 {
+   font-size: 22px;
+}
+a {
+color: blue;
+font-size: 13px;
+text-decoration: none;
+}
+input[type="file"] {
+background: #7886d8;
+padding: 15px 11px 18px 20px;
+border-radius: 4px;
+cursor: pointer;
+color: white;
+width: 159px;
+border: 2px solid #3F51B5;
+outline: 0;
+}
+	</style>
+</head>
+
+<body>
+   <a href="https://www.positronx.io" target="_blank"></a>
+   <div class="upload-wrapper">
+      <h1></h1><br>
+      <header>
+         <input type="file" onchange="showFile()">
+      </header>
+      <div id="show-text"></div>
+   </div>
+   <script type="text/javascript">
+   	   // Check for the various File API support.
+   if (window.File && window.FileReader && window.FileList && window.Blob) {
+      function showFile() {
+         var preview = document.getElementById('show-text');
+         var file = document.querySelector('input[type=file]').files[0];
+         var reader = new FileReader()
+
+         var textFile = /text.*/;
+
+         if (file.type.match(textFile)) {
+            reader.onload = function (event) {
+               preview.innerHTML = event.target.result;
+            }
+         } else {
+            preview.innerHTML = "<span class='error'>It doesn't seem to be a text file!</span>";
+         }
+         reader.readAsText(file);
+      }
+   } else {
+      alert("Your browser is too old to support HTML5 File API");
+   }
+   </script>
+
+<button><a  href="translate.html">TRANSLATE</a></button>
+
+</body>
+</html>
